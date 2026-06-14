@@ -1,3 +1,11 @@
+def calculate_pet_human_age(age: int, step: int) -> int:
+    if age < 15:
+        return 0
+    if age < 24:
+        return 1
+    return (age - 24) // step + 2
+
+
 def get_human_age(cat_age: int, dog_age: int) -> list:
     """
     Convert cat and dog ages to human years.
@@ -28,18 +36,7 @@ def get_human_age(cat_age: int, dog_age: int) -> list:
     if cat_age > 50 or dog_age > 40:
         raise ValueError("Looks like your pet got replaced")
 
-    if cat_age < 15:
-        cat_human_age = 0
-    elif cat_age < 24:
-        cat_human_age = 1
-    else:
-        cat_human_age = (cat_age - 24) // 4 + 2
-
-    if dog_age < 15:
-        dog_human_age = 0
-    elif dog_age < 24:
-        dog_human_age = 1
-    else:
-        dog_human_age = (dog_age - 24) // 5 + 2
-
-    return [cat_human_age, dog_human_age]
+    return [
+        calculate_pet_human_age(cat_age, step=4),
+        calculate_pet_human_age(dog_age, step=5)
+    ]
